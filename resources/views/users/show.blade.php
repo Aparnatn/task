@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                {{-- <h2> Show Post</h2> --}}
+                <h2> {{ $user->name }}</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
@@ -27,8 +27,8 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>password:</strong>
-                {{ $user->password }}
+                <strong>Address:</strong>
+                {{ $user->address ? $user->address->address : '' }}
             </div>
         </div>
 

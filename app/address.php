@@ -3,12 +3,21 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
-class address extends Model
+class Address extends Model
 {
-    public function users()
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'address'
+    ];
+
+    public function user()
     {
         return $this->belongsTo(Users::class);
-
     }
 }

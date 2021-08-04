@@ -35,14 +35,14 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>email:</strong>
+                    <strong>Email:</strong>
                     <textarea class="form-control" style="height:150px" name="email" placeholder="Description">{{ $user->email }}</textarea>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>password:</strong>
-                    <textarea class="form-control" style="height:150px" name="email" placeholder="Description">{{ $user->password }}</textarea>
+                    <strong>Address:</strong>
+                    <textarea class="form-control" style="height:150px" name="address" placeholder="Description">{{ $user->address ? $user->address : '' }}</textarea>
                 </div>
             </div>
 

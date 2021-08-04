@@ -21,13 +21,13 @@
     <tr>
         <th>Name</th>
         <th>Email</th>
-        <th>Password</th>
+        <th>Address</th>
     </tr>
     @foreach ($users as $user)
     <tr>
         <td>{{ $user->name }}</td>
         <td>{{ $user->email }}</td>
-        <td>{{ $user->password }}</td>
+        <td>{{ $user->address? $user->address->address : '' }}</td>
 
         <td>
             <form action="{{ route('users.destroy', $user) }}" method="POST">

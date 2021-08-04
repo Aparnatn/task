@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Users;
+use App\User as Users;
+use App\Address;
+
 class UsersController extends Controller
 {
     /**
@@ -80,7 +82,7 @@ class UsersController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required|email',
         ]);
 
         $users->update($request->all());
@@ -101,11 +103,4 @@ class UsersController extends Controller
          return redirect()->route('users.index')
                          ->with('success','user deleted successfully');
     }
-    public function address()
-    {
-        return
-
-         $this->hasOne(Address::class);
-    }
-
 }
