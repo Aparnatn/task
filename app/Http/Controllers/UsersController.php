@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User as Users;
-use App\Address;
+use App\User;
 
 class UsersController extends Controller
 {
@@ -15,7 +14,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = Users::with('address')->get();
+        $users = User::with('address')->get();
 
         return view('users.index',compact('users'));
     }
@@ -40,10 +39,18 @@ class UsersController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'bail|required|email|unique:users',
+            'address' => 'required'
         ]);
 
-        Users::create($request->all());
+        $user = User::create([
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+        ]);
+
+        $user->address()->create([
+            'address' => $request->get('address'),
+        ]);
 
         return redirect()->route('users.index')->with('success','user created successfully.');
      }
@@ -55,7 +62,7 @@ class UsersController extends Controller
       *@param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Users $user)
+    public function show(User $user)
     {
         return view('users.show', compact('user'));
     }
@@ -66,7 +73,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Users $user)
+    public function edit(User $user)
     {
         return view('users.edit', compact('user'));
     }
@@ -78,14 +85,31 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Users $users)
+    public function update(Request $request, User $user)
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'bail|required|email|unique:users,email,'.$user->id,
+            'address' => 'required'
         ]);
 
-        $users->update($request->all());
+        $user->update([
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+        ]);
+
+        $address = $user->address();
+
+        if ($address) {
+            $address->update([
+                'address' => $request->get('address'),
+            ]);
+        } else {
+            $user->address()->create([
+                'address' => $request->get('address'),
+            ]);
+        }
+
 
         return redirect()->route('users.index')->with('success','user updated successfully');
     }
@@ -96,11 +120,15 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Users $user)
+    public function destroy(User $user)
     {
+        $address = $user->address();
+        if ($address) {
+            $address->delete();
+        }
+
         $user->delete();
 
-         return redirect()->route('users.index')
-                         ->with('success','user deleted successfully');
+        return redirect()->route('users.index')->with('success','user deleted successfully');
     }
 }

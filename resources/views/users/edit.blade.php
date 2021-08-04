@@ -33,16 +33,17 @@
                     <input type="text" name="name" value="{{ $user->name }}" class="form-control" placeholder="Title">
                 </div>
             </div>
+
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Email:</strong>
-                    <textarea class="form-control" style="height:150px" name="email" placeholder="Description">{{ $user->email }}</textarea>
+                    <input type="email" name="email" value="{{ $user->email }}" class="form-control" placeholder="email">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Address:</strong>
-                    <textarea class="form-control" style="height:150px" name="address" placeholder="Description">{{ $user->address ? $user->address : '' }}</textarea>
+                    <textarea name="address" placeholder="Address" class="form-control" style="height:150px">{{ $user->address ? $user->address->address : '' }}</textarea>
                 </div>
             </div>
 
