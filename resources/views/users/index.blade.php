@@ -21,11 +21,14 @@
     <tr>
         <th>Name</th>
         <th>Email</th>
+        <th>Password</th>
     </tr>
     @foreach ($users as $user)
     <tr>
         <td>{{ $user->name }}</td>
         <td>{{ $user->email }}</td>
+        <td>{{ $user->password }}</td>
+
         <td>
             <form action="{{ route('users.destroy', $user) }}" method="POST">
                 <a class="btn btn-info" href="{{ route('users.show', $user) }}">Show</a>

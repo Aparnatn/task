@@ -42,7 +42,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>password:</strong>
-                    <textarea class="form-control" style="height:150px" name="email" placeholder="Description">{{ $user->email }}</textarea>
+                    <textarea class="form-control" style="height:150px" name="email" placeholder="Description">{{ $user->password }}</textarea>
                 </div>
             </div>
 

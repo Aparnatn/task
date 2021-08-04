@@ -13,7 +13,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = Users::all();
+        $users = Users::with('address')->get();
 
         return view('users.index',compact('users'));
     }
@@ -100,6 +100,12 @@ class UsersController extends Controller
 
          return redirect()->route('users.index')
                          ->with('success','user deleted successfully');
+    }
+    public function address()
+    {
+        return
+
+         $this->hasOne(Address::class);
     }
 
 }
