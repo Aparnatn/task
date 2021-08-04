@@ -53,9 +53,9 @@ class UsersController extends Controller
       *@param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Users $user)
     {
-        return view('users.show',compact('users'));
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -64,9 +64,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Users $users)
+    public function edit(Users $user)
     {
-        return view('users.edit',compact('users'));
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -94,9 +94,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Users $users)
+    public function destroy(Users $user)
     {
-        $users->delete();
+        $user->delete();
 
          return redirect()->route('users.index')
                          ->with('success','user deleted successfully');
