@@ -35,13 +35,13 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
               <strong>Email:</strong>
-                <textarea class="form-control" style="height:150px" name="email" placeholder="placeholder"></textarea>
+              <input type="text" name="email" class="form-control" placeholder="email">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
               <strong>Password:</strong>
-                <textarea class="form-control" style="height:150px" name="password" placeholder="placeholder"></textarea>
+              <input type="text" name="password" class="form-control" placeholder="password">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
